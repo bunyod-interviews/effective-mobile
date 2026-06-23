@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ./backend
+    container_name: my_api
+    expose:
+      - 8080
+    env_file:
+      - .env
+    read_only: true
+    restart: unless-stopped
+    networks:
+      - my-network
+
+  proxy:
+    image: nginx:1.31.2-alpine
+    container_name: proxy
+    ports:
+      - "80:80"
+    networks:
+      - my-network
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    restart: unless-stopped
+
+networks:
+  my-network:

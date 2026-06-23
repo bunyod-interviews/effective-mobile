@@ -1,0 +1,9 @@
+.env
+.git
+.gitignore
+.dockerignore
+
+# IDEs
+.cursor
+.vscode
+.idea
